@@ -1,0 +1,9 @@
+title: teste-component-shared
+x-stoplight:
+  id: x3aa2dz06t9ot
+type: object
+properties:
+  id:
+    type: string
+    x-stoplight:
+      id: m17taaluq1jeg

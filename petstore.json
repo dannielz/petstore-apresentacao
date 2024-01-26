@@ -1,0 +1,292 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "ds3wivyvdquiy"
+  },
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://petstore.swagger.io/v1"
+    }
+  ],
+  "paths": {
+    "/pets": {
+      "get": {
+        "summary": "List all pets",
+        "operationId": "listPets",
+        "tags": [
+          "pets"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of pets",
+            "headers": {
+              "x-next": {
+                "description": "A link to the next page of responses",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pets"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "uu72wbzexgi7e"
+        },
+        "x-internal": false,
+        "deprecated": true
+      },
+      "post": {
+        "summary": "Create a pet",
+        "operationId": "createPets",
+        "tags": [
+          "pets"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "zt0pox7owx0ve"
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Info for a specific pet",
+        "operationId": "showPetById",
+        "tags": [
+          "pets"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The id of the pet to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "qmvx65g81x0ce"
+        }
+      }
+    },
+    "/teste": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Shared Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models/teste-component-shared.yaml"
+                },
+                "examples": {
+                  "Example 1": {
+                    "$ref": "#/components/examples/teste-example"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-teste",
+        "x-stoplight": {
+          "id": "r6k2smwrb35gp"
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pet": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        },
+        "x-stoplight": {
+          "id": "yvwdx6fmorvzl"
+        }
+      },
+      "Pets": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Pet"
+        },
+        "x-stoplight": {
+          "id": "ckqf0kiz80m9g"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "x-stoplight": {
+          "id": "3fyyhfe3bo6oj"
+        }
+      },
+      "Teste": {
+        "title": "Teste",
+        "x-stoplight": {
+          "id": "ix7gqnzhu8as4"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "7utzdwcioigwq"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "teste-response": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "teste-example": {
+        "value": {
+          "description": "Example shared example",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "teste-tag"
+    }
+  ]
+}
