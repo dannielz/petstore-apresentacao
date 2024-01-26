@@ -16,7 +16,7 @@
     }
   ],
   "paths": {
-    "/pets": {
+    "/pets/teste": {
       "get": {
         "summary": "List all pets",
         "operationId": "listPets",
@@ -106,7 +106,8 @@
         "x-stoplight": {
           "id": "zt0pox7owx0ve"
         }
-      }
+      },
+      "parameters": []
     },
     "/pets/{petId}": {
       "get": {
